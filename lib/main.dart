@@ -1,10 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chats/chat_list/page.dart';
 import 'package:flutter_chats/user_settings/page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,4 +50,17 @@ class MyApp extends StatelessWidget {
       return ChatListPage(myUserId: userId,);
     }
   }
+}
+
+// FIXME: Util関数群
+String formatDateTime(DateTime dateTime) {
+  final now = DateTime.now();
+   final bool isSameDay = now.difference(dateTime) < const Duration(days: 1);
+  final DateFormat dateFormatter;
+   if (isSameDay) {
+     dateFormatter = DateFormat.Hm();
+   } else {
+     dateFormatter = DateFormat('yyyy/MM/dd HH:mm');
+   }
+   return dateFormatter.format(dateTime);
 }

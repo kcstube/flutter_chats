@@ -82,11 +82,11 @@ class _CreateChatPageState extends State<CreateChatPage> {
                             .primaryColor
                             .withOpacity(0.95),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
+                          borderRadius: BorderRadius.circular(4),
                         ),
                         elevation: 8,
                         child: Container(
-                          padding: const EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(2),
                           child: ListTile(
                             title: Text(
                               "${data["name"]}",
@@ -98,11 +98,12 @@ class _CreateChatPageState extends State<CreateChatPage> {
                               ),
                             ),
                             leading: ClipRRect(
-                              borderRadius: BorderRadius.circular(27),
+                              borderRadius: BorderRadius.circular(16),
                               child: SizedBox(
-                                height: 56,
-                                width: 56,
+                                height: 32,
+                                width: 32,
                                 child: Image.network(
+                                  // TODO: Pick Image from Gallary.
                                   "https://via.placeholder.com/150",
                                 ),
                               ),
