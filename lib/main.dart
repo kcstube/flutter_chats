@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chats/chat_list/page.dart';
+import 'package:flutter_chats/user_settings/page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,10 +26,23 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
       ),
-      home: const Center(
-        child: CircularProgressIndicator(),
+      home: FutureBuilder(
+        future: _getUserId(),
+        builder: (context, snapshot) {
+          if (snapshot.data == null) {
+            return const UserSettingsPage();
+          }
+          return const ChatListPage();
+        },
       ),
     );
+  }
+
+  Future<String?> _getUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final id = prefs.getString("id");
+    // ユーザー名を登録していなければ、idは`null`が代入される
+    return id;
   }
 }
 
