@@ -60,7 +60,9 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                           // チャット一覧へ画面遷移
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (context) => const ChatListPage(),
+                              builder: (context) => ChatListPage(
+                                myUserId: ref.id,
+                              ),
                             ),
                           );
                         },

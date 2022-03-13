@@ -26,13 +26,16 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.transparent,
         ),
       ),
-      home: FutureBuilder(
+      home: FutureBuilder<String?>(
         future: _getUserId(),
         builder: (context, snapshot) {
-          if (snapshot.data == null) {
+          final myUserId = snapshot.data;
+          if (myUserId == null) {
             return const UserSettingsPage();
           }
-          return const ChatListPage();
+          return ChatListPage(
+            myUserId: myUserId,
+          );
         },
       ),
     );
